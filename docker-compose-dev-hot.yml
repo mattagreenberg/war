@@ -1,0 +1,25 @@
+version: "3.0"
+services:
+  dev:
+    image: bc-dev
+    container_name: "bc-dev-hot"
+    ports: 
+      - "8080:8080"
+    volumes: 
+      - .:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
+    command: npm run dev
+    depends_on: 
+      - postgres-db
+  postgres-db:
+    image: bc-postgres
+    container_name: "bc-database"
+    environment: 
+      - POSTGRES_PASSWORD=bcpw
+      - POSTGRES_USER=bcadmin
+      - POSTGRES_DB=bcdb
+    volumes: 
+      - dev-db-volume:/var/lib/postgresql/database
+volumes:
+  node_modules:
+  dev-db-volume:
