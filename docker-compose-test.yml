@@ -1,7 +1,7 @@
 version: "3"
 services:
   test:
-    image: bc-dev
+    image: backyardcasino/bc-dev:latest
     container_name: "bc-test"
     ports:
       - "3000:3000"
@@ -12,7 +12,7 @@ services:
     depends_on: 
       - postgres-db-test
   postgres-db-test:
-    image: bc-postgres
+    image: backyardcasino/bc-postgres:latest
     container_name: "bc-test-database"
     environment:
       - POSTGRES_PASSWORD=bcpw
