@@ -5,13 +5,19 @@ const request = require('supertest');
 const server = 'http://localhost:3000';
 
 // test route integration between server and client
-describe('Route integration', () => {
-  describe('/', () => {
-    it('responds with 200 status and text/html content type', () => {
-      return request(server)
-        .get('/')
-        .expect('Content-type', /text\/html/)
-        .expect(200);
-    });
-  });
+// describe('Route integration', () => {
+//   describe('/', () => {
+//     it('responds with 200 status and text/html content type', () => {
+//       return request(server)
+//         .get('/')
+//         .expect('Content-type', /text\/html/)
+//         .expect(200);
+//     });
+//   });
+// });
+
+
+test('adds 1 + 2 to equal 3', () => {
+  const num = 1 + 2 + 3;
+  expect(num).toBe(3);
 });
