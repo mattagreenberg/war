@@ -1,9 +1,9 @@
-const { query } = require('../models/models');
+// const { query } = require('../models/models');
 
-const userController = {};
+// const userController = {};
 
-userController.createUser = (req, res, next) => {
-  const { username, password } = req.body;
+// userController.createUser = (req, res, next) => {
+//   const { username, password } = req.body;
 
-  
-};
+
+// };

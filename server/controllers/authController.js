@@ -1,10 +1,10 @@
-const { uuid } = require('uuidv4');
-const { query } = require('../models/models');
+// const { uuid } = require('uuidv4');
+// const { query } = require('../models/models');
 
-const authController = {};
+// const authController = {};
 
-authController.setAccessToken = (req, res, next) => {
-  
-};
+// authController.setAccessToken = (req, res, next) => {
 
-module.exports = authController;
+// };
+
+// module.exports = authController;
