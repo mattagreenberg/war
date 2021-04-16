@@ -1,7 +1,7 @@
 version: "3.0"
 services:
   dev:
-    image: backyardcasino/bc-dev
+    image: backyardcasino/bc-dev:latest
     container_name: "bc-dev-hot"
     ports: 
       - "8080:8080"
@@ -12,7 +12,7 @@ services:
     depends_on: 
       - postgres-db
   postgres-db:
-    image: backyardcasino/bc-postgres
+    image: backyardcasino/bc-postgres:latest
     container_name: "bc-database"
     environment: 
       - POSTGRES_PASSWORD=bcpw
