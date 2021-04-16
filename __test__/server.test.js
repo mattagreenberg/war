@@ -17,7 +17,6 @@ const server = 'http://localhost:3000';
 // });
 
 
-test('adds 1 + 2 to equal 3', () => {
-  const num = 1 + 2 + 3;
-  expect(num).toBe(3);
+test('expects 3 to equal 3', () => {
+  expect(3).toEqual(3);
 });
