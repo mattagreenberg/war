@@ -1,11 +1,22 @@
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const app = express();
 
 const PORT = process.env.port || 3000;
 
 app.use(express.static(path.join(__dirname, '../build/')));
+app.use(bodyParser.json());
+app.use(cookieParser());
+
+const userRouter = require('./routers/userRouter');
+
+app.use('/user', userRouter);
 
 app.get('/', (req, res) => {
   res

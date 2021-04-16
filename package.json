@@ -7,7 +7,7 @@
     "test": "NODE_ENV=test jest --coverage",
     "start": "nodemon server/server.js",
     "build": "NODE_ENV=production webpack --config ./webpack.config.js",
-    "dev": "NODE_ENV=development nodemon server/server.js & webpack-dev-server --colors --watch --progress --open",
+    "dev": "NODE_ENV=development nodemon ./server/server.js & webpack-dev-server --colors --watch --progress --open",
     "docker-dev": "docker-compose -f docker-compose-dev-hot.yml up"
   },
   "repository": {
@@ -41,14 +41,16 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.0",
+    "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "styled-components": "^5.2.3",
-    "uuidv4": "^6.2.7"
+    "uuid": "^8.3.2"
   }
 }
