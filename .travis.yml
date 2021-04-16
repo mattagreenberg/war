@@ -6,6 +6,7 @@ script:
   - python3 -VV
   - pip -V
 before_deploy:
+  - python -m pip install --upgrade pip setuptools wheel
   - python3 -m pip install --user awscli
   - python3 -m pip install --user awsebcli
   - export PATH=$PATH:$HOME/.local/bin
