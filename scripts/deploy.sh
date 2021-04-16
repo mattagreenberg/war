@@ -6,7 +6,7 @@ aws configure set default.region us-east-2
 # Log in to ECR
 eval $(aws ecr get-login --no-include-email --region us-east-2)
 # Build docker image based on our production Dockerfile
-docker build -t bc .
+docker build -t backyardcasino/bc .
 # tag the image with the Travis-CI SHA
 docker tag bc:latest 727835028611.dkr.ecr.us-east-2.amazonaws.com/bc:$TRAVIS_COMMIT
 # Push built image to ECS
