@@ -18,6 +18,6 @@ zip -r bc-prod-deploy.zip Dockerrun.aws.json .ebextensions
 # Upload zip file to s3 bucket
 aws s3 cp bc-prod-deploy.zip s3://$EB_BUCKET/bc-prod-deploy.zip
 # Create a new application version with new Dockerrun
-aws elasticbeanstalk create-application-version --application-name bc-dev-hot --version-label $TRAVIS_COMMIT --source-bundle S3Bucket=$EB_BUCKET,S3Key=bc-prod-deploy.zip
+aws elasticbeanstalk create-application-version --application-name backyard-casino --version-label $TRAVIS_COMMIT --source-bundle S3Bucket=$EB_BUCKET,S3Key=bc-prod-deploy.zip
 # Update environment to use new version number
 aws elasticbeanstalk update-environment --environment-name bc-dev-hot --version-label $TRAVIS_COMMIT
