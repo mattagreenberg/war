@@ -89,9 +89,6 @@ describe('/score', () => {
   describe('POST /record', () => {
     it('responds with a 201 status', async () => {
       try {
-        const add = await request(server)
-          .post('/user/signup')
-          .send({ username: 'jest', password: 'jest' });
         const res = await request(server)
           .post('/score/record')
           .send(scoreEntry)
