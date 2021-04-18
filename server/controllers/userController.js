@@ -5,29 +5,33 @@ const { hashPass, accessToken, refreshToken } = require('../utils');
 
 const userController = {};
 
-userController.createUser = (req, res, next) => {
+userController.createUser = async (req, res, next) => {
 
-  const { username, password } = req.body;
+  try {
 
-  // set hashed password
-  const hashedPass = hashPass(password);
+    const { username, password } = req.body;
 
-  // set user id
-  const userId = uuidv4();
+    // set hashed password
+    const hashedPass = hashPass(password);
 
-  const queryString = `
-    INSERT INTO users (_id, username, password, session_token, balance)
-    VALUES ($1, $2, $3, $4, 100);`;
+    // set user id
+    const userId = uuidv4();
 
-  const values = [userId, username, hashedPass, null];
+    const queryString = `
+      INSERT INTO users (_id, username, password, session_token, balance)
+      VALUES ($1, $2, $3, null, 100);`;
 
-  query(queryString, values)
-    .then(() => {
-      next();
-    })
-    .catch(err => {
-      next(err);
-    });
+    const values = [userId, username, hashedPass];
+
+    query(queryString, values)
+      .then(() => next())
+      .catch(err => next(err));
+
+  } catch (err) {
+    next(err);
+  }
+
+  
 };
 
 userController.loginUser = async (req, res, next) => {
@@ -35,7 +39,6 @@ userController.loginUser = async (req, res, next) => {
   const { username, password } = req.body;
 
   const verifyQuery = `SELECT password FROM users WHERE username = $1;`;
-  const refreshQuery = `UPDATE users SET session_token = $1 WHERE username = $1;`;
   const values = [username];
 
   try {
@@ -67,12 +70,14 @@ userController.loginUser = async (req, res, next) => {
 
     res.cookie('jwt', access, { httpOnly: true });
 
-    query(refreshQuery,values)
-      .then(() => next())
-      .catch(err => next(err));
+    const refreshQuery = `UPDATE users SET session_token = $1 WHERE username = $1;`;
+    const refreshVals = [username, refresh];
+
+    const refQuery = await query(refreshQuery,values);
+     next();
 
   } catch (err) {
-      error.status = 401;
+      err.status = 401;
       next(err);
   };
 
@@ -96,18 +101,6 @@ userController.deleteUser = async (req, res, next) => {
   const verifyQuery = `SELECT password FROM users WHERE username = $1;`;
   const deleteQuery = `DELETE FROM users WHERE username = $1;`;
   const values = [username];
-
-  query(queryString, values)
-    .then(({ rows }) => {
-      bcrypt.compareSync(password, rows[0].password, (err, result) => {
-        if (err) err.status = 401;
-        return result ? next() : next(err)
-      });
-    })
-    .catch(err => {
-      err.status = 401;
-      next(err);
-    });
 
   try {
     const response = await query(verifyQuery, values);
@@ -133,13 +126,9 @@ userController.deleteUser = async (req, res, next) => {
       next(err);
     }
 
-
-    query(deleteQuery, values)
-      .then(() => next())
-      .catch(err => {
-        err.status = 401;
-        next(err);
-      });
+   const del = await query(deleteQuery, values)
+      
+   next();
 
   } catch (err) {
       err.status = 401;

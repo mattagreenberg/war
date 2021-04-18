@@ -36,7 +36,7 @@ CREATE TABLE scores(
   hands_played integer NOT NULL,
   hands_won integer NOT NULL,
   wars_played integer NOT NULL,
-  wars_won integer NOT NULL
+  wars_won integer NOT NULL,
   CONSTRAINT scores_fk0 FOREIGN KEY (user_id) REFERENCES users (_id) 
 );
 

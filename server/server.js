@@ -15,8 +15,10 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 const userRouter = require('./routers/userRouter');
+const scoresRouter = require('./routers/scoresRouter');
 
 app.use('/user', userRouter);
+app.use('/score', scoresRouter);
 
 app.get('/', (req, res) => {
   res
@@ -36,7 +38,6 @@ app.use((err, req, res, next) => {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
   
-  console.log(err);
   res.status(err.status || 500).send(res.locals.message);
 });
 

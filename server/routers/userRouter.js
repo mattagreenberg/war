@@ -1,8 +1,6 @@
 const express = require('express');
-
 const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
-const { loginUser } = require('../controllers/userController');
 
 const router = express.Router();
 
@@ -18,7 +16,6 @@ router.post(
 router.post(
   '/login',
   userController.loginUser,
-  authController.refreshToken,
   (req, res) => {
     res.sendStatus(200);
   }

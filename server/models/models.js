@@ -19,6 +19,12 @@ if (process.env.NODE_ENV === 'development') {
   config.password = process.env.RDS_PASSWORD || 'bcpw';
   config.host = process.env.RDS_HOSTNAME|| 'postgres-db';
   config.port = Number(process.env.RDS_PORT) || 5432;
+} else if (process.env.NODE_ENV === 'test') {
+  config.user = 'bcadmin';
+  config.database = 'bcdb';
+  config.password = 'bcpw';
+  config.host = 'postgres-db-test';
+  config.port = 5432;
 }
 
 console.log(`Connection to database ${config.database} on host ${config.host}`);

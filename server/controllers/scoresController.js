@@ -64,7 +64,7 @@ scoresController.listAllScores = async (req, res, next) => {
 
 scoresController.listUserScores = async (req, res, next) => {
 
-  const { username } = req.body;
+  const { username } = req.params;
 
   try {
 
