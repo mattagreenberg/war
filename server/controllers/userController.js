@@ -53,16 +53,15 @@ userController.loginUser = async (req, res, next) => {
 
     const compare = bcrypt.compareSync(password, rows[0].password, (err, result) => {
       if (err) return next(err);
+      if (!result) {
+        const err = new Error('Unauthorized');
+        err.status = 401;
+        return next(err);
+      }
       return result;
     });
 
     console.log(compare);
-
-    if (!compare) {
-      const err = new Error('Unauthorized');
-      err.status = 401;
-      return next(err);
-    }
 
     // set access token
     const access = accessToken({ username: username });
