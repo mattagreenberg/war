@@ -4,7 +4,7 @@
   "description": "A casino style war game.",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test jest --coverage",
+    "test": "NODE_ENV=test jest --coverage --detectOpenHandles",
     "start": "nodemon server/server.js",
     "build": "NODE_ENV=production webpack --config ./webpack.config.js",
     "dev": "NODE_ENV=development nodemon ./server/server.js & webpack-dev-server --colors --watch --progress --open",
