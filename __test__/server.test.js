@@ -122,7 +122,6 @@ describe('SERVER TESTS', () => {
         try {
           const res = await agent
             .get('/score/all')
-          console.log('getall res', res.res.text);
           expect(res.statusCode).toEqual(200);
           expect(res)
         } catch (err) {

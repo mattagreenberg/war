@@ -51,10 +51,12 @@ userController.loginUser = async (req, res, next) => {
       return next(err);
     }
 
-    const compare = await bcrypt.compareSync(password, rows[0].password, (err, result) => {
+    const compare = bcrypt.compareSync(password, rows[0].password, (err, result) => {
       if (err) return next(err);
       return result;
     });
+
+    console.log(compare);
 
     if (!compare) {
       const err = new Error('Unauthorized');
@@ -87,7 +89,6 @@ userController.loginUser = async (req, res, next) => {
 userController.logoutUser = (req, res, next) => {
   try {
     res.clearCookie('jwt');
-    console.log('jwt cleared');
     next();
   } catch (err) {
     next(err);
