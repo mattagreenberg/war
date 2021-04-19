@@ -23,9 +23,9 @@ userController.createUser = async (req, res, next) => {
 
     const values = [userId, username, hashedPass];
 
-    query(queryString, values)
-      .then(() => next())
-      .catch(err => next(err));
+    await query(queryString, values);
+
+    next();
 
   } catch (err) {
     next(err);
@@ -75,8 +75,8 @@ userController.loginUser = async (req, res, next) => {
     const refreshQuery = `UPDATE users SET session_token = $1 WHERE username = $2;`;
     const refreshVals = [refresh, username];
 
-    await query(refreshQuery,refreshVals);
-     next();
+    await query(refreshQuery, refreshVals);
+    next();
 
   } catch (err) {
       err.status = 401;
