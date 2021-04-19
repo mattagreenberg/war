@@ -51,7 +51,7 @@ userController.loginUser = async (req, res, next) => {
       return next(err);
     }
 
-    const compare = bcrypt.compareSync(password, rows[0].password, (err, result) => {
+    const compare = await bcrypt.compareSync(password, rows[0].password, (err, result) => {
       if (err) return next(err);
       return result;
     });
@@ -70,10 +70,10 @@ userController.loginUser = async (req, res, next) => {
 
     res.cookie('jwt', access, { httpOnly: true });
 
-    const refreshQuery = `UPDATE users SET session_token = $1 WHERE username = $1;`;
-    const refreshVals = [username, refresh];
+    const refreshQuery = `UPDATE users SET session_token = $1 WHERE username = $2;`;
+    const refreshVals = [refresh, username];
 
-    const refQuery = await query(refreshQuery,values);
+    await query(refreshQuery,refreshVals);
      next();
 
   } catch (err) {

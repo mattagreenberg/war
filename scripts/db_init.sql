@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS scores;
+DROP TABLE IF EXISTS users;
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;

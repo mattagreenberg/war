@@ -5,7 +5,7 @@ const config = {
   idleTimeoutMillis: 30000 // how long a client is allowed to remain idle before being closed
 };
 
-console.log('process.env is:', process.env);
+// console.log('process.env is:', process.env);
 
 if (process.env.NODE_ENV === 'development') {
   config.user = 'bcadmin';
@@ -41,7 +41,7 @@ pool.on('error', (err, client) => {
 
 // export the query method for passing queries to the pool
 module.exports.query = function (text, values, callback) {
-  console.log('query:', text, values);
+  // console.log('query:', text, values);
   return pool.query(text, values, callback);
 };
 

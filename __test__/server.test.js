@@ -36,7 +36,6 @@ describe('Route integration', () => {
 describe('SERVER TESTS', () => {
 
   async (done) => {
-    jest.setTimeout(50000)
     server = app.listen(3000, (err) => {
       if (err) return done(err);
   
