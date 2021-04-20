@@ -2,7 +2,7 @@ import * as React from 'react';
 
 function App() {
   return (
-    <div style={{ backgroundColor: 'blue' }}>React Test</div>
+    <div style={{ backgroundColor: 'purple' }}>React Test</div>
   );
 }
 
