@@ -79,6 +79,7 @@ userController.loginUser = async (req, res, next) => {
 
   } catch (err) {
       err.status = 401;
+      console.log(err);
       next(err);
   };
 
