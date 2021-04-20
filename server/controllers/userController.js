@@ -59,7 +59,6 @@ userController.loginUser = async (req, res, next) => {
       }
       return result;
     });
-    console.log('env', process.env);
     // set access token
     const access = accessToken({ username: username });
 
