@@ -44,7 +44,6 @@ userController.loginUser = async (req, res, next) => {
   try {
     
     const rows = await query(verifyQuery, values).then(({ rows }) => rows).catch(err => next(err));
-    console.log('rows', rows);
     if (!rows.length) {
       const err = new Error('Unauthorized');
       err.status = 401;
@@ -60,9 +59,6 @@ userController.loginUser = async (req, res, next) => {
       }
       return result;
     });
-
-    console.log(compare);
-    console.log('proccess.env', process.env);
 
     // set access token
     const access = accessToken({ username: username });
