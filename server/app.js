@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 
-dotenv.config({ debug: process.env.DEBUG });
+dotenv.config();
 
 const app = express();
 
