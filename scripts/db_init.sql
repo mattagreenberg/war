@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS scores;
+DROP TABLE IF EXISTS users;
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -21,7 +21,8 @@ CREATE TABLE users(
   _id varchar PRIMARY KEY NOT NULL,
   username varchar NOT NULL,
   password varchar NOT NULL,
-  session_token varchar NOT NULL
+  session_token varchar,
+  balance integer NOT NULL
 );
 
 ALTER TABLE users OWNER TO bcadmin;
@@ -32,8 +33,10 @@ CREATE TABLE scores(
   game varchar NOT NULL,
   time_recorded TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
   balance integer NOT NULL,
+  hands_played integer NOT NULL,
   hands_won integer NOT NULL,
   wars_played integer NOT NULL,
+  wars_won integer NOT NULL,
   CONSTRAINT scores_fk0 FOREIGN KEY (user_id) REFERENCES users (_id) 
 );
 

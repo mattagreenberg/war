@@ -5,7 +5,7 @@ const config = {
   idleTimeoutMillis: 30000 // how long a client is allowed to remain idle before being closed
 };
 
-console.log('process.env is:', process.env);
+// console.log('process.env is:', process.env);
 
 if (process.env.NODE_ENV === 'development') {
   config.user = 'bcadmin';
@@ -19,6 +19,12 @@ if (process.env.NODE_ENV === 'development') {
   config.password = process.env.RDS_PASSWORD || 'bcpw';
   config.host = process.env.RDS_HOSTNAME|| 'postgres-db';
   config.port = Number(process.env.RDS_PORT) || 5432;
+} else if (process.env.NODE_ENV === 'test') {
+  config.user = 'bcadmin';
+  config.database = 'bcdb';
+  config.password = 'bcpw';
+  config.host = 'postgres-db-test';
+  config.port = 5432;
 }
 
 console.log(`Connection to database ${config.database} on host ${config.host}`);
@@ -34,9 +40,9 @@ pool.on('error', (err, client) => {
 });
 
 // export the query method for passing queries to the pool
-module.exports.query = function (text, values, callback) {
-  console.log('query:', text, values);
-  return pool.query(text, values, callback);
+module.exports.query = async function (text, values, callback) {
+  // console.log('query:', text, values);
+  return await pool.query(text, values, callback);
 };
 
 // the pool also supports checking out a client for multiple operations

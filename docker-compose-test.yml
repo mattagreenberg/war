@@ -3,6 +3,12 @@ services:
   test:
     image: backyardcasino/bc-dev:latest
     container_name: "bc-test"
+    environment:
+      - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
+      - ACCESS_TOKEN_LIFE=${ACCESS_TOKEN_LIFE}
+      - REFRESH_TOKEN_LIFE=${REFRESH_TOKEN_LIFE}
+      - REFRESH_TOKEN_SECRET=${REFRESH_TOKEN_SECRET}
+      - SALT_ROUNDS=${SALT_ROUNDS}
     ports:
       - "3000:3000"
     volumes:
