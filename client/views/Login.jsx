@@ -1,0 +1,51 @@
+import * as React from 'react';
+import { LoginForm, SignupForm } from '../components/Form.jsx';
+import ThemeToggle from '../components/ThemeToggle.jsx';
+import { DiceSVG } from '../styling/svg.jsx';
+import { useTheme } from '../context/themeContext';
+import {
+  Main,
+  Page,
+  Container,
+  LoginContainer,
+  SignupContainer,
+  Header,
+  X,
+  SignupText,
+} from '../styling/login.styling';
+
+export default function Login() {
+
+  const { theme, updateTheme } = useTheme();
+
+  const [signup, setSignup] = React.useState(false);
+
+  const handleSignup = (event) => {
+    signup ? setSignup(false) : setSignup(true);
+  };
+
+  return (
+    <Main theme={theme}>
+      <ThemeToggle />
+      <Page theme={theme}>
+        <Container>
+          <LoginContainer signup={signup} theme={theme}>
+            <DiceSVG theme={theme} />
+            <LoginForm signup={signup} />
+          </LoginContainer>
+          <SignupContainer signup={signup} theme={theme}>
+            {signup
+              ? (<>
+                  <X onClick={handleSignup}><div style={{ color: '#f7f7f7' }}>&#10060;</div></X>
+                  <DiceSVG theme={theme} />
+                  <Header><p>Sign Up</p></Header>
+                  <SignupForm signup={signup} />
+                </>)
+              : (<SignupText>Don't have an account? <span style={{color: 'blue', cursor: 'pointer'}} onClick={handleSignup}>Sign Up</span></SignupText>)}
+          </SignupContainer>
+        </Container>
+      </Page>
+    </Main>
+  );
+};
+

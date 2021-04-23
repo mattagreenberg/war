@@ -5,6 +5,27 @@ const { hashPass, accessToken, refreshToken } = require('../utils');
 
 const userController = {};
 
+userController.verifyUniqueUsername = async (req, res, next) => {
+  try {
+
+    const { username } = req.body;
+
+    const queryString = `SELECT * FROM users WHERE username = $1;`;
+    const values = [username];
+
+    const users = await query(queryString, values).then(({ rows }) => rows);
+    
+    if (users.length) {
+      return res.sendStatus(409);
+    };
+
+    next();
+
+  } catch (err) {
+    next(err);
+  }
+};
+
 userController.createUser = async (req, res, next) => {
 
   try {
@@ -59,6 +80,12 @@ userController.loginUser = async (req, res, next) => {
       }
       return result;
     });
+
+    if (!compare) {
+      const err = new Error('Unauthorized');
+      err.status = 401;
+      return next(err);
+    }
     // set access token
     const access = accessToken({ username: username });
 
