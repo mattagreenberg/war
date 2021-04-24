@@ -5,6 +5,7 @@ import routes from './routes/routes';
 
 function App() {
   return (
+    <>
     <Router>
       <Switch>
         {routes.map(route => (
@@ -16,6 +17,7 @@ function App() {
         ))}
       </Switch>
     </Router>
+    </>
   );
 }
 

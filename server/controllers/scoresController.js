@@ -15,7 +15,15 @@ scoresController.recordScore = async (req, res, next) => {
     username
   } = req.body;
 
+  if (!game || !balance || !handsPlayed || !handsWon || !warsPlayed || !warsWon || !username) {
+    const err = new Error('request missing values');
+    err.status = 400;
+    return next(err);
+  };
+
   const scoreId = uuidv4();
+
+
 
   try {
     const idQuery = `SELECT _id FROM users WHERE username = $1;`;
@@ -86,5 +94,6 @@ scoresController.listUserScores = async (req, res, next) => {
       next(err);
   };
 };
+
 
 module.exports = scoresController;

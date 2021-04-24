@@ -1,3 +1,6 @@
+// import "isomorphic-fetch";
+// import { server } from '../../server/config';
+
 async function client(endpoint, { body, ...customConfig } = {}) {
   const headers = {'Content-Type': 'application/json'};
 
@@ -19,7 +22,7 @@ async function client(endpoint, { body, ...customConfig } = {}) {
     return res;
   } catch (err) {
     console.log(err);
-  }
+  };
 };
 
 export default client;

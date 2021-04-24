@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { useHistory } from 'react-router-dom';
 import { useAuth } from '../context/authContext';
 import useForm from '../hooks/useForm';
+import { useHistory } from 'react-router';
 import validate from '../utils/formValidationRules';
 import {
   Form,
@@ -115,7 +115,7 @@ export function SignupForm({ signup }) {
         required
         name='password'
       />
-      <Button top={true} onClick={handleSubmit} disabled={!(values.username && values.password)}>Sign Up and Play</Button>
+      <Button title='signup' top={true} onClick={handleSubmit} disabled={!(values.username && values.password)}>Sign Up and Play</Button>
     </Form>
   );
 };

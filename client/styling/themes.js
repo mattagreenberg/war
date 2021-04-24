@@ -1,10 +1,9 @@
 const themes = {
   dark: {
-    dark: true,
     theme: 'dark',
     primary: '#282929',
     secondary: '#f7f7f7',
-    boxShadow: '1px 1px 1px #161717',
+    boxShadow: '1px 1px 1px #black',
     themeToggle: {
       box: '#41444d',
       btn: '#131a29',
@@ -12,15 +11,14 @@ const themes = {
     },
     diceSVG: {
       background: '#f7f7f7',
-      fill: '#282929'
+      fill: '#131a29'
     }
   },
   light: {
-    light: true,
     theme: 'light',
     primary: '#f7f7f7',
     secondary: 'white',
-    boxShadow: '1px 1px 1px lightgrey',
+    boxShadow: '1px 1px 1px #808080',
     themeToggle: {
       box: '#e3e3e3',
       btn: 'white',

@@ -10,13 +10,20 @@ userController.verifyUniqueUsername = async (req, res, next) => {
 
     const { username } = req.body;
 
+    if (!username) {
+      const err = new Error('username and password are required');
+      err.status = 400;
+      return next(err);
+    }
+
     const queryString = `SELECT * FROM users WHERE username = $1;`;
     const values = [username];
 
     const users = await query(queryString, values).then(({ rows }) => rows);
-    
-    if (users.length) {
-      return res.sendStatus(409);
+    if (users.length > 0) {
+      const err = new Error('username already in use');
+      err.status = 409;
+      return next(err);
     };
 
     next();
@@ -31,6 +38,12 @@ userController.createUser = async (req, res, next) => {
   try {
 
     const { username, password } = req.body;
+
+    if (!username || !password) {
+      const err = new Error('username and password are required');
+      err.status = 400;
+      return next(err);
+    }
 
     // set hashed password
     const hashedPass = hashPass(password);
@@ -58,6 +71,12 @@ userController.createUser = async (req, res, next) => {
 userController.loginUser = async (req, res, next) => {
   
   const { username, password } = req.body;
+
+  if (!username || !password) {
+    const err = new Error('username and password are required');
+    err.status = 400;
+    return next(err);
+  }
 
   const verifyQuery = `SELECT password FROM users WHERE username = $1;`;
   const values = [username];
@@ -121,6 +140,12 @@ userController.logoutUser = (req, res, next) => {
 userController.deleteUser = async (req, res, next) => {
 
   const { username, password } = req.body;
+
+  if (!username || !password) {
+    const err = new Error('username and password are required');
+    err.status = 400;
+    return next(err);
+  }
 
   const verifyQuery = `SELECT password FROM users WHERE username = $1;`;
   const deleteQuery = `DELETE FROM users WHERE username = $1;`;

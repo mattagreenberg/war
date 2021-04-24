@@ -13,9 +13,9 @@ export default function ThemeToggle() {
 
   return (
     <ThemeContainer>
-      <ThemeBox onClick={() => updateTheme(theme)} theme={theme}>
+      <ThemeBox title='themeToggle' onClick={() => updateTheme(theme)} theme={theme}>
         <ThemeBtn theme={theme}>
-          <ThemeIcon>{theme.theme === 'dark' ? '🌙' : '🌞'}</ThemeIcon>
+          <ThemeIcon title='themeIcon'>{theme.theme === 'dark' ? '🌙' : '🌞'}</ThemeIcon>
         </ThemeBtn>
       </ThemeBox>
     </ThemeContainer>

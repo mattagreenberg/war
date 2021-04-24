@@ -13,8 +13,11 @@ import {
   X,
   SignupText,
 } from '../styling/login.styling';
+import { useHistory } from 'react-router';
 
 export default function Login() {
+
+  const history = useHistory();
 
   const { theme, updateTheme } = useTheme();
 
@@ -36,7 +39,7 @@ export default function Login() {
           <SignupContainer signup={signup} theme={theme}>
             {signup
               ? (<>
-                  <X onClick={handleSignup}><div style={{ color: '#f7f7f7' }}>&#10060;</div></X>
+                  <X onClick={handleSignup}><div>&#10060;</div></X>
                   <DiceSVG theme={theme} />
                   <Header><p>Sign Up</p></Header>
                   <SignupForm signup={signup} />

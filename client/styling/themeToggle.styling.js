@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const ThemeContainer = styled.div`
   width: 100%;
-  height: 3rem;
+  height: 7%;
+  min-height: 3rem;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;

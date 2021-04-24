@@ -2,31 +2,31 @@ import styled from 'styled-components';
 
 export const Main = styled.div`
   background-color: ${({theme}) => theme.primary};
+  height: 100%;
+  width: 100%;
 `;
 
 export const Page = styled.div`
-  height: 100%;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  
+  height: 93%;
 `;
 
 export const Container = styled.div`
   height: 60%;
+  width: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
 export const LoginContainer = styled.div`
-  height: 70%;
-  min-height: 15rem;
+  height: 80%;
+  min-height: 17rem;
   transition: ${props => props.signup ? 'none' : 'height 0.4s ease-out'};
   width: 20%;
-  min-width: 14.5rem;
+  min-width: 20rem;
   border: none;
   padding-bottom: .5rem;
   box-shadow: ${({theme}) => theme.boxShadow};
@@ -40,17 +40,15 @@ export const LoginContainer = styled.div`
 `;
 
 export const SignupContainer = styled.div`
-  height: ${props => props.signup ?  '83%' : '13%'};
+  height: ${props => props.signup ?  '90%' : '15%'};
   min-height: ${props => props.signup ?  '17rem' : '3rem'};
   width: 20%;
-  min-width: 14.5rem;
+  min-width: 20rem;
   border: none;
   box-shadow: ${({theme}) => theme.boxShadow};
   border-radius: 5px;
   margin-top: .5rem;
-  text-align: center;
   font-size: .7rem;
-  padding: .8rem;
   background-color: ${({theme}) => theme.secondary};
   display: flex;
   flex-direction: column;
@@ -71,9 +69,11 @@ export const X = styled.div`
   text-align: right;
   cursor: pointer;
   color: #f7f7f7;
+  margin-right: 2.5rem;
 `;
 
 export const SignupText = styled.div`
   color: #282929;
-  
+  height: fit-content;
+  width: fit-content;
 `;
