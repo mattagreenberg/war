@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.post(
   '/signup',
+  userController.verifyUniqueUsername,
   userController.createUser,
   userController.loginUser,
   (req, res) => {

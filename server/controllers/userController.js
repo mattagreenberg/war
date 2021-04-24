@@ -5,11 +5,45 @@ const { hashPass, accessToken, refreshToken } = require('../utils');
 
 const userController = {};
 
+userController.verifyUniqueUsername = async (req, res, next) => {
+  try {
+
+    const { username } = req.body;
+
+    if (!username) {
+      const err = new Error('username and password are required');
+      err.status = 400;
+      return next(err);
+    }
+
+    const queryString = `SELECT * FROM users WHERE username = $1;`;
+    const values = [username];
+
+    const users = await query(queryString, values).then(({ rows }) => rows);
+    if (users.length > 0) {
+      const err = new Error('username already in use');
+      err.status = 409;
+      return next(err);
+    };
+
+    next();
+
+  } catch (err) {
+    next(err);
+  }
+};
+
 userController.createUser = async (req, res, next) => {
 
   try {
 
     const { username, password } = req.body;
+
+    if (!username || !password) {
+      const err = new Error('username and password are required');
+      err.status = 400;
+      return next(err);
+    }
 
     // set hashed password
     const hashedPass = hashPass(password);
@@ -38,6 +72,12 @@ userController.loginUser = async (req, res, next) => {
   
   const { username, password } = req.body;
 
+  if (!username || !password) {
+    const err = new Error('username and password are required');
+    err.status = 400;
+    return next(err);
+  }
+
   const verifyQuery = `SELECT password FROM users WHERE username = $1;`;
   const values = [username];
 
@@ -59,6 +99,12 @@ userController.loginUser = async (req, res, next) => {
       }
       return result;
     });
+
+    if (!compare) {
+      const err = new Error('Unauthorized');
+      err.status = 401;
+      return next(err);
+    }
     // set access token
     const access = accessToken({ username: username });
 
@@ -94,6 +140,12 @@ userController.logoutUser = (req, res, next) => {
 userController.deleteUser = async (req, res, next) => {
 
   const { username, password } = req.body;
+
+  if (!username || !password) {
+    const err = new Error('username and password are required');
+    err.status = 400;
+    return next(err);
+  }
 
   const verifyQuery = `SELECT password FROM users WHERE username = $1;`;
   const deleteQuery = `DELETE FROM users WHERE username = $1;`;
