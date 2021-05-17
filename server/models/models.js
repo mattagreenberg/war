@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === 'development') {
   config.port = 5432;
 }
 
-console.log(`Connection to database ${config.database} on host ${config.host}`);
+// console.log(`Connection to database ${config.database} on host ${config.host}`);
 
 
 // initializes a connection pool
@@ -36,7 +36,7 @@ console.log(`Connection to database ${config.database} on host ${config.host}`);
 const pool = new pg.Pool(config);
 
 pool.on('error', (err, client) => {
-  console.error('idle client error', err.message, err.stack);
+  // console.error('idle client error', err.message, err.stack);
 });
 
 // export the query method for passing queries to the pool

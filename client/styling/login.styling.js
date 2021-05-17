@@ -2,8 +2,6 @@ import styled from 'styled-components';
 
 export const Main = styled.div`
   background-color: ${({theme}) => theme.primary};
-  height: 100%;
-  width: 100%;
 `;
 
 export const Page = styled.div`

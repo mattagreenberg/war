@@ -2,7 +2,6 @@
 const request = require('supertest');
 const server = require('../../../server/server');
 const { createHttpTerminator } = require('http-terminator');
-const { isCompositeComponent } = require('react-dom/test-utils');
 
 const httpTerminator = createHttpTerminator({ server })
 

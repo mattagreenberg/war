@@ -24,7 +24,7 @@ export function LoginForm({ signup }) {
   const handleGuestLogin = (event) => {
     event.preventDefault();
     guestLogin();
-    history.push('/game');
+    history.push('/main');
   };
 
   return (

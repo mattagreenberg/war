@@ -2,7 +2,9 @@ const themes = {
   dark: {
     theme: 'dark',
     primary: '#282929',
+    gamePrimary: '#161717',
     secondary: '#f7f7f7',
+    secondaryLabel: '#f7f7f7',
     boxShadow: '1px 1px 1px #black',
     themeToggle: {
       box: '#41444d',
@@ -18,6 +20,7 @@ const themes = {
     theme: 'light',
     primary: '#f7f7f7',
     secondary: 'white',
+    secondaryLabel: 'black',
     boxShadow: '1px 1px 1px #808080',
     themeToggle: {
       box: '#e3e3e3',

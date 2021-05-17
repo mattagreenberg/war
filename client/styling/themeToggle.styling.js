@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
 export const ThemeContainer = styled.div`
-  width: 100%;
-  height: 7%;
-  min-height: 3rem;
+  height: 5rem;
+  min-height: 5rem;
+  min-width: 100% !important;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
+  margin: 0;
 `;
 
 export const ThemeBox = styled.div`
@@ -17,7 +18,6 @@ export const ThemeBox = styled.div`
   width: 5%;
   border-radius: 25px;
   margin-right: 2rem;
-  margin-top: 1rem;
   display: flex;
   align-items: center;
   cursor: pointer;

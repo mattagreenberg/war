@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { LoginForm, SignupForm } from '../components/Form.jsx';
 import ThemeToggle from '../components/ThemeToggle.jsx';
-import { DiceSVG } from '../styling/svg.jsx';
+import { DiceSVG } from '../utils/svg/svg.jsx';
 import { useTheme } from '../context/themeContext';
 import {
   Main,
@@ -13,6 +13,7 @@ import {
   X,
   SignupText,
 } from '../styling/login.styling';
+import { ThemeContainer } from '../styling/themeToggle.styling';
 import { useHistory } from 'react-router';
 
 export default function Login() {
@@ -29,7 +30,9 @@ export default function Login() {
 
   return (
     <Main theme={theme}>
-      <ThemeToggle />
+      <ThemeContainer>
+        <ThemeToggle />
+      </ThemeContainer>
       <Page theme={theme}>
         <Container>
           <LoginContainer signup={signup} theme={theme}>

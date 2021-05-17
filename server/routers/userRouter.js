@@ -14,6 +14,14 @@ router.post(
   }
 );
 
+router.get(
+  '/balance/:username',
+  userController.getBalance,
+  (req, res) => {
+    res.status(200).json(res.locals.balance);
+  }
+);
+
 router.post(
   '/login',
   userController.loginUser,
@@ -35,6 +43,14 @@ router.delete(
   userController.deleteUser,
   (req, res) => {
     res.sendStatus(200);
+  }
+);
+
+router.put(
+  '/balance/update',
+  userController.updateBalance,
+  (req, res) => {
+    res.sendStatus(204);
   }
 );
 

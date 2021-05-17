@@ -1,7 +1,7 @@
 // import "isomorphic-fetch";
 // import { server } from '../../server/config';
 
-async function client(endpoint, { body, ...customConfig } = {}) {
+async function client(endpoint, { body, ...customConfig } = {}, method) {
   const headers = {'Content-Type': 'application/json'};
 
   const config = {
@@ -19,6 +19,7 @@ async function client(endpoint, { body, ...customConfig } = {}) {
 
   try {
     const res = await fetch(endpoint, config);
+    console.log(res);
     return res;
   } catch (err) {
     console.log(err);
