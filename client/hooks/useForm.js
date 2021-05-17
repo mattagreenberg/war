@@ -14,7 +14,7 @@ function useForm(callback, validate) {
       const res = await callback(values);
       if (res.status === 409) setErrors({ ...errors, username: 'Username already in use' });
       if (res.status === 401) setErrors({ ...errors, username: 'Incorrect username and/or password' });
-      if (res.status === 200 || res.status === 201) history.push('/game');
+      if (res.status === 200 || res.status === 201) history.push('/main');
     } else {
       setValues({});
     }

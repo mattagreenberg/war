@@ -1,10 +1,10 @@
 import Login from '../views/Login.jsx';
-import Game from '../views/Game.jsx';
+import Main from '../views/Main.jsx';
 
 const routes = [
   {
-    path: '/game',
-    component: Game
+    path: '/main',
+    component: Main
   },
   {
     path: '/',

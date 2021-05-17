@@ -185,4 +185,42 @@ userController.deleteUser = async (req, res, next) => {
   };
 };
 
+userController.getBalance = async (req, res, next) => {
+  const { username } = req.params;
+
+  try {
+    const queryString = 'SELECT balance FROM users WHERE username = $1;';
+    const values = [username];
+
+    const result = await query(queryString, values);
+    const { rows } = result;
+
+    if (!rows.length) {
+      const err = new Error('username invalid');
+      err.status = 401;
+      return next(err);
+    }
+
+    res.locals.balance = rows[0].balance;
+    next();
+  } catch (err) {
+    next(err);
+  }
+};
+
+userController.updateBalance = async (req, res, next) => {
+  const { balance, username } = req.body;
+
+  try {
+    const queryString = 'UPDATE users SET balance = $1 WHERE username = $2;';
+    const values = [balance, username];
+
+    const result = await query(queryString, values);
+
+    next();
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = userController;
